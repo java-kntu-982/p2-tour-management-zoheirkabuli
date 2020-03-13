@@ -1,8 +1,6 @@
 # 2nd Project - Tour Management - 650 Points + 130 
-![Check Style](https://github.com/<Your project>/workflows/Check20%Style20
-%-20%CI
-/badge
-.svg)
+![Check Style](![Check Style - CI]
+(https://github.com/<Your Projects Name>/workflows/Check%20Style%20-%20CI/badge.svg))
 
 ## Project Description
 
