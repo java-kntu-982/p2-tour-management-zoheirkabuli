@@ -87,11 +87,6 @@ public class TourLeader {
 
     @Override
     public String toString() {
-        return "TourLeader{" +
-                "firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", nationalNumber='" + nationalNumber + '\'' +
-                ", born=" + born +
-                '}';
+        return  firstName + " " + lastName + "\nBorn :" + born;
     }
 }
