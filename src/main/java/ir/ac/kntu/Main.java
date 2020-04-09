@@ -41,9 +41,9 @@ public class Main {
                 "\n5.Search Leader\n6.Back to Main Page");
         where = scanner.next().charAt(0);
         if (where == '1'){
-
+            allLeaders();
         }else if (where == '2'){
-
+            addLeader();
         }else if (where == '3'){
 
         }else if (where == '4'){
@@ -55,8 +55,61 @@ public class Main {
         }
     }
 
+    private static void addLeader() {
+        print("Add Leader: \n" +
+                "Enter The first name");
+        String fName = scanner.next();
+        print("Enter the last name");
+        String lName = scanner.next();
+        print("Enter the birthDay");
+        int birthDay = scanner.nextInt();
+        print("Enter the BirthMonth");
+        int birthMonth = scanner.nextInt();
+        print("enter the birthYear");
+        int birthYear = scanner.nextInt();
+        Date birth = new Date(birthYear,birthMonth,birthDay);
+        print("enter the national Number");
+        String nNumber = scanner.next();
+        print("enter the ID number");
+        String idNumber = scanner.next();
+        print("enter the recruitment date like \nyear\nmonth\nday");
+        int rYear = scanner.nextInt();
+        int rMonth = scanner.nextInt();
+        int rDay = scanner.nextInt();
+        Date rDate = new Date(rYear,rMonth,rDay);
+        print("is Married?\n" +
+                "1.Yes\n2.no");
+        int married = scanner.nextInt();
+        boolean isMarried = false;
+        if (married == 1){
+            isMarried = true;
+        }
+        ArrayList<Region> places = leaderPlace();
+        TourLeader tourLeader = new TourLeader(fName,lName,nNumber,idNumber,birth,rDate,isMarried,places);
+        leaders.add(tourLeader);
+        leadersPage();
+    }
+
+    private static ArrayList<Region> leaderPlace() {
+        ArrayList<Region> holder = new ArrayList<>();
+        while (true){
+            print("Where leader Knows?\nenter the country");
+            String country = scanner.next();
+            print("enter the city");
+            String city = scanner.next();
+            Region region = new Region(country,city);
+            holder.add(region);
+            print("finnish?\n1.Yes\n2.No");
+            int num = scanner.nextInt();
+            if (num == 1){
+                break;
+            }
+        }
+        return  holder;
+    }
+
     public static void toursPage(){
-        print("Enter the number :\n1.Types Of ،ours\n2.All Tours" +
+        print("Enter the number :\n1.Types Of Tours\n2.All Tours" +
                 "\n3.Add Type Of Tour\n4.Add Tour\n5.Edit Tour\n6.Delete Tour" +
                 "\n7.Search Types of Tours\n8.Search Tours\n9.Back to Main Page");
 
@@ -64,7 +117,7 @@ public class Main {
         if (where == '1'){
 
         }else if (where == '2'){
-
+            allTours();
         }else if (where == '3'){
 
         }else if (where == '4'){
@@ -82,11 +135,65 @@ public class Main {
         }
     }
 
-    public static void allLeaders(){
-        print("Enter the Number");
-        for (int i = 0; i < leaders.size(); i++) {
-            print(""+(i+1)+leaders.get(i));
+    private static void allTours() {
+        while (true){
+            print("Enter the Number");
+            for (int i = 0; i < tours.size(); i++) {
+                print((i+1)+"."+tours.get(i));
+            }
+            print("Enter 0 to Main Page");
+            int holder = scanner.nextInt();
+            while (holder < 0 ){
+
+            }
+            if (holder == 0){
+                mainPage();
+            }else if (holder > tours.size()){
+                print("wrong!!\nTry Again");
+            }else {
+                tourPage(tours.get(holder-1));
+            }
         }
+    }
+
+    private static void tourPage(Tour tour) {
+
+    }
+
+    public static void allLeaders(){
+        while (true){
+            print("Enter the Number");
+            for (int i = 0; i < leaders.size(); i++) {
+                print((i+1)+"."+leaders.get(i));
+            }
+            print("Enter 0 to Main Page");
+            int holder = scanner.nextInt();
+            while (holder < 0 ){
+
+            }
+            if (holder == 0){
+                mainPage();
+            }else if (holder > leaders.size()){
+                print("wrong!!\nTry Again");
+            }else {
+                leaderPage(leaders.get(holder-1));
+            }
+        }
+
+    }
+
+    private static void leaderPage(TourLeader tourLeader) {
+        print(tourLeader+"");
+        print("ID Number : "+tourLeader.getIdNumber()+"\nNational Number : "+tourLeader.getNationalNumber());
+        print("Birth Date" + tourLeader.getBorn());
+        print("is Married? " + tourLeader.isMarried());
+        print("Where he Knows:");
+        for (int i = 0; i < tourLeader.getPlaces().size(); i++) {
+            print((i+1)+"."+tourLeader.getPlaces().get(i));
+        }
+        print("Enter 0 to back");
+        int back = scanner.nextInt();
+
     }
 
     public static void print(String txt){

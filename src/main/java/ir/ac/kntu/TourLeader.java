@@ -6,11 +6,11 @@ public class TourLeader {
     private String firstName,lastName,nationalNumber,idNumber;
     private Date born,recruitment;
     private boolean isMarried;
-    private ArrayList<String> places;
+    private ArrayList<Region> places;
 
     public TourLeader(String firstName, String lastName,
                       String nationalNumber, String idNumber, Date born,
-                      Date recruitment, boolean isMarried, ArrayList<String> places) {
+                      Date recruitment, boolean isMarried, ArrayList<Region> places) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.nationalNumber = nationalNumber;
@@ -77,11 +77,11 @@ public class TourLeader {
         isMarried = married;
     }
 
-    public ArrayList<String> getPlaces() {
+    public ArrayList<Region> getPlaces() {
         return places;
     }
 
-    public void setPlaces(ArrayList<String> places) {
+    public void setPlaces(ArrayList<Region> places) {
         this.places = places;
     }
 
