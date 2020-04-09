@@ -1,5 +1,7 @@
 package ir.ac.kntu;
 
+import org.checkerframework.checker.units.qual.A;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -119,9 +121,9 @@ public class Main {
         }else if (where == '2'){
             allTours();
         }else if (where == '3'){
-
+            addTypesTour();
         }else if (where == '4'){
-
+            addTour();
         }else if (where == '5'){
 
         }else if (where == '6'){
@@ -133,6 +135,62 @@ public class Main {
         }else if (where == '9'){
             mainPage();
         }
+    }
+
+    private static void addTypesTour() {
+        print("Enter the start place like this\ncountry\ncity");
+        String country = scanner.next();
+        String city = scanner.next();
+        Region start = new Region(country,city);
+        print("enter the finnish place like this\ncountry\ncity");
+        String fCountry = scanner.next();
+        String fCity = scanner.next();
+        Region end = new Region(fCountry,fCity);
+        print("enter the price");
+        String price = scanner.next();
+        print("enter the length");
+        int days = scanner.nextInt();
+        print("enter the min and max people like\nmax\nmin");
+        int max = scanner.nextInt();
+        int min = scanner.nextInt();
+        print("Type : 1.ground 2.fly");
+        int flied = scanner.nextInt();
+        boolean isFlied = false;
+        if (flied == 2){
+            isFlied = true;
+        }
+        print("Enter the plan:");
+        ArrayList<String> plan = new ArrayList<>();
+        for (int i = 0; i < days; i++) {
+            print("day "+(i+1));
+            String txt = scanner.next();
+            plan.add(txt);
+        }
+        Tour tour = new Tour(days,min,max,price,start,end,plan,isFlied);
+        tours.add(tour);
+        toursPage();
+    }
+
+    private static void addTour() {
+        print("Select a Type of Tour");
+        for (int i = 0; i < tours.size(); i++) {
+            print((i+1)+"."+tours.get(i));
+        }
+        int holder = scanner.nextInt();
+        print("select a leader:");
+        for (int i = 0; i < leaders.size(); i++) {
+            print((i+1)+"."+leaders.get(i));
+        }
+        int lHolder = scanner.nextInt();
+        tours.get(holder-1).setLeader(leaders.get(lHolder-1));
+        print("enter the start Date like \nyear\nmonth\nday");
+        int year,month,day;
+        year = scanner.nextInt();
+        month = scanner.nextInt();
+        day = scanner.nextInt();
+        Date startDate = new Date(year,month,day);
+        tours.get(holder-1).setStartDate(startDate);
+        toursPage();
     }
 
     private static void allTours() {
